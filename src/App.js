@@ -6,9 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <MyComponent name="John">
-          <p>This is a child element</p>
-        </MyComponent>
+        <MyComponent></MyComponent>
       </div>
     );
   }
