@@ -3,6 +3,7 @@ import React from "react";
 class UsersInfo extends React.Component {
     state = {
         name: 'Hiểu Hoàng',
+        tempName: 'Hiểu Hoàng',
         address: 'Hanoi',
         age: 20
     }
@@ -13,13 +14,15 @@ class UsersInfo extends React.Component {
 
     handleOnChange = (event) => {
         this.setState({
-            name: event.target.value
+            tempName: event.target.value
         })
     }
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
+        this.setState({
+            name: this.state.tempName
+        })
     }
 
     render() {
@@ -29,7 +32,7 @@ class UsersInfo extends React.Component {
                 <h1>Tôi sống tại {this.state.address}</h1>
                 <form onSubmit={this.handleOnSubmit}>
                     <input
-                        value={this.state.name}
+                        value={this.state.tempName}
                         type="text"
                         onChange={this.handleOnChange}
                     />
