@@ -1,30 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import './DisplayInfo.scss'
 
-class DisplayInfo extends React.Component {
-    state = {
-        isShowListUsers: true
+// class DisplayInfo extends React.Component {
+//     constructor(props) {
+//         console.log('abc');
+//         super(props)
+//         this.state = {
+//             isShowListUsers: true
+//         }
+//     }
+
+//     componentDidMount = () => {
+//         console.log('xyz');
+//     }
+    
+//     handleShowHide = () => {
+//         this.setState({
+//             isShowListUsers: !this.state.isShowListUsers
+//         })
+//     }
+
+//     render = () => {
+//         const { listUsers } = this.props;
+
+//         return (
+//             <div>
+//                 {this.state.isShowListUsers &&
+//                     <div>
+//                         {listUsers.map((user) => {
+//                             console.log(user);
+//                             return (
+//                                 <div key={user.id} className={user.age > 15 ? "green" : "red"}>
+//                                         <p>Name: {user.name}</p>
+//                                         <p>Age: {user.age}</p>
+//                                     <button onClick={() => this.props.handleDeleteUser(user.id)}>Delete</button>
+//                                     <hr />
+//                                 </div>
+//                             )
+//                         })}
+//                     </div>
+//                 }
+//                 <button onClick={this.handleShowHide}>
+//                     {this.state.isShowListUsers === true ? "Hide list users" : "Show list users"}
+//                 </button>
+//             </div>
+//         )
+//     }
+// }
+
+const DisplayInfo = (props) => {
+    const [isShowHideListUsers, setShowHideListUsers] = useState(true);
+    const { listUsers } = props;
+
+    const handleShowHide = () => {
+        setShowHideListUsers(!isShowHideListUsers);
     }
-
-    render = () => {
-        const { listUsers } = this.props;
-
-        const handleShowHide = () => {
-            this.setState({
-                isShowListUsers: !this.state.isShowListUsers
-            })
-        }
 
         return (
             <div>
-                {this.state.isShowListUsers &&
+                {isShowHideListUsers &&
                     <div>
                         {listUsers.map((user) => {
+                            console.log(user);
                             return (
                                 <div key={user.id} className={user.age > 15 ? "green" : "red"}>
-                                    <ul>
-                                        <li>Name: {user.name}</li>
-                                        <li>Age: {user.age}</li>
-                                    </ul>
+                                        <p>Name: {user.name}</p>
+                                        <p>Age: {user.age}</p>
+                                    <button onClick={() => props.handleDeleteUser(user.id)}>Delete</button>
                                     <hr />
                                 </div>
                             )
@@ -32,11 +74,10 @@ class DisplayInfo extends React.Component {
                     </div>
                 }
                 <button onClick={handleShowHide}>
-                    {this.state.isShowListUsers === true ? "Hide list users" : "Show list users"}
+                    {isShowHideListUsers === true ? "Hide list users" : "Show list users"}
                 </button>
             </div>
         )
-    }
 }
 
 export default DisplayInfo;
